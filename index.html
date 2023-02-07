@@ -47,24 +47,28 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">In-N-Out: Decomposition of In-distribution and Out-of-Distribution Objects for Face Video Inversion and Editing</h1>          
+         <h1 class="col-md-12 text-center" style="font-size:30px;" id="title">
+            <b>In-N-Out</b>: Decomposition of In-distribution and Out-of-Distribution Objects for <br> Face Video Inversion and Editing<br>
+    
+          </h1>        
+          
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://twizwei.github.io/">Yiran Xu</a><sup>1</sup>,</span>
+              <a href="https://twizwei.github.io/">Yiran Xu</a><sup>&#128034</sup>,</span>
             <span class="author-block">
-              <a href="https://zhixinshu.github.io/">Zhixin Shu</a><sup>2</sup>,</span>
+              <a href="https://zhixinshu.github.io/">Zhixin Shu</a><sup>&#65</sup>,</span>
             <span class="author-block">
-                <a href="https://research.adobe.com/person/cameron-smith/">Cameron Smith</a><sup>2</sup>,</span>
+                <a href="https://research.adobe.com/person/cameron-smith/">Cameron Smith</a><sup>&#65</sup>,</span>
             <span class="author-block">
-              <a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a><sup>1</sup>,
+              <a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a><sup>&#128034</sup>,
             <span class="author-block">
-                <a href="https://sites.google.com/view/seoungwugoh/">Seoung Wug Oh</a><sup>2</sup>,</span>
+                <a href="https://sites.google.com/view/seoungwugoh/">Seoung Wug Oh</a><sup>&#65</sup></span>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Maryland, College Park,</span>
-            <span class="author-block"><sup>2</sup>Adobe Research</span>
+            <span class="author-block"><sup>&#128034</sup>University of Maryland, College Park,</span>
+            <span class="author-block"><sup>&#65</sup>Adobe Research</span>
           </div>
 
           <div class="column has-text-centered">
@@ -200,13 +204,9 @@
     <!--/ Paper video. -->
 
     <!-- Method. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+    <div class="container has-text-centered is-max-desktop">
         <h2 class="title is-3">Method Overview</h2>
-        <div class="publication-video">
-          <img src="static/images/Overview.png" alt="method overview">
-        </div>
-      </div>
+        <img src="static/images/Overview.png" alt="method overview" style="width:100%;" >
     </div>
     <!--/ Method. -->
     
@@ -217,15 +217,14 @@
 <section class="section">
   <div class="container is-max-desktop">
 
-
     <!-- Results. -->
     <h2 class="title is-3">More results</h2>
         
       <!-- Internet Video -->
-      <h3 class="title is-4">Semantic editing on Internet Videos</h3>
+      <h3 class="title is-4">Reconstruction on Internet Videos</h3>
       <p>
         Our method can be applied to diverse videos from the Internet. 
-        We can edit it with available semantic editing methods, e.g., InterfaceGAN, StyleCLIP.
+        We show reconstruction results below.
       </p>
       <p> </p>
       <div class="columns is-centered">
@@ -242,7 +241,7 @@
                       type="video/mp4">
             </video>
             <video id="Input" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/results/sunglasses1_input.mp4"
+              <source src="./static/results/sunglasses2_input.mp4"
                       type="video/mp4">
             </video>
             <video id="Input" autoplay controls muted loop playsinline height="100%">
@@ -257,6 +256,250 @@
               <source src="./static/results/Halloween1_input.mp4"
                       type="video/mp4">
             </video>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween5_input.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ Input -->
+
+        <!-- IDE-3D -->
+        <div class="column">
+          <h2 class="title is-5"><a href="https://mrtornado24.github.io/IDE-3D/">IDE-3D </a></h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/rednose2_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/mask1_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/sunglasses2_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/ladygaga_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween4_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween1_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="IDE-3D" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween5_rec_ide3d.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- IDE-3D -->
+
+
+        <!-- W -->
+        <div class="column">
+          <h2 class="title is-5">W Space</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/rednose2_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/mask1_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/sunglasses2_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/ladygaga_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween4_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween1_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween5_rec_w.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- W -->
+
+        <!-- W+ -->
+        <div class="column">
+          <h2 class="title is-5">W+ Space</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/rednose2_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/mask1_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/sunglasses2_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/ladygaga_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween4_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween1_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="W+" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween5_rec_wplus.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- W+ -->
+
+        <!-- PTI -->
+        <div class="column">
+          <h2 class="title is-5"><a href="https://github.com/danielroich/PTI/">PTI </a></h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/rednose2_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/mask1_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/sunglasses2_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/ladygaga_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween4_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween1_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="PTI" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween5_rec_pti.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- PTI -->
+
+
+        <!-- Ours. -->
+        <div class="column">
+          <h2 class="title is-5">Ours</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/rednose2_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/mask1_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/sunglasses2_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="Input" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/ladygaga_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween4_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween1_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween5_rec_ours.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 class="title is-4">Semantic editing on Internet Videos</h3>
+      <p>
+        We can edit it with available semantic editing methods, e.g., InterfaceGAN, StyleCLIP.
+      </p>
+      <p> </p>
+      
+      <div class="columns is-centered">
+        <!-- Input -->
+        
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-5">Input</h2>
+            <div class="services__text">"eyeglasses"</div>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/rednose2_input.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="services__text">"eyeglasses"</div>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/mask1_eyeglasses_input.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="services__text">"younger"</div>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/sunglasses1_input.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="services__text">"smile"</div>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/ladygaga_input.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="services__text">"smile"</div>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween4_input.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="services__text">"Elsa"</div>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween1_input.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="services__text">"surprised"</div>
             <video id="Input" autoplay controls muted loop playsinline height="100%">
               <source src="./static/results/Halloween5_input.mp4"
                       type="video/mp4">
@@ -480,6 +723,7 @@
               <source src="./static/results/ladygaga_input.mp4"
                       type="video/mp4">
             </video>
+            <div class="services__text">"Elsa"</div>
             <video id="Input" autoplay controls muted loop playsinline height="100%">
               <source src="./static/results/rednose2_input.mp4"
                       type="video/mp4">
@@ -600,6 +844,115 @@
         </div>
 
       </div>
+      
+      <h3 class="title is-4">View synthesis while video is playing</h3>
+      <p>
+        We can synthesize views while the video is playing. 
+      </p>
+      <p> </p>
+      <div class="columns is-centered">
+        <!-- Input -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-5">Input</h2>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/ladygaga_input.mp4"
+                      type="video/mp4">
+            </video>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween2_input.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ Input -->
+
+      
+        <!-- Ours. -->
+        <div class="column">
+          <h2 class="title is-5">View synthesis</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/ladygaga_rgb_interpolation_spatiotemporal.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween2_rgb_interpolation_spatiotemporal.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!--/ Input -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-5">Input</h2>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween4_input.mp4"
+                      type="video/mp4">
+            </video>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween6_input.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ Input -->
+
+      
+        <!-- Ours. -->
+        <div class="column">
+          <h2 class="title is-5">View synthesis</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween4_rgb_interpolation_spatiotemporal.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween6_rgb_interpolation_spatiotemporal.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!--/ Input -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-5">Input</h2>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/Halloween3_input.mp4"
+                      type="video/mp4">
+            </video>
+            <video id="Input" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/results/sunglasses2_input.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ Input -->
+
+      
+        <!-- Ours. -->
+        <div class="column">
+          <h2 class="title is-5">View synthesis</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/Halloween3_rgb_interpolation_spatiotemporal.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="ours" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/results/sunglasses2_rgb_interpolation_spatiotemporal.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        </div>
 
       <!-- OOD object removal -->
       <h3 class="title is-4">OOD object removal</h3>
@@ -712,6 +1065,8 @@
         </div>
 
       </div>
+    
+   
 
     <!-- Concurrent Work. -->
     <!-- <div class="columns is-centered">
@@ -766,7 +1121,18 @@
             We would like to thank <a href="https://nerfies.github.io/">Nerfies</a> for providing the website <a href="https://github.com/nerfies/nerfies.github.io">source code</a>.
           </p>
           <p>
-            The Internet videos used in the project are from YouTube.
+            The Internet videos used in the project are from YouTube. 
+            <br>Sources: </br>
+            <br> https://www.youtube.com/watch?v=aQ-rxudugzA </br>
+            <br> https://www.youtube.com/watch?v=ehMkwl8qyIU </br>
+            <br> https://www.youtube.com/watch?v=xWQXqhLjD5s </br>
+            <br> https://www.youtube.com/watch?v=JtYjnD3yleo </br>
+            <br> https://www.youtube.com/watch?v=bdbFoyPol24 </br>
+            <br> https://www.youtube.com/watch?v=9jC2x1FJ4uU </br>
+            <br> https://www.youtube.com/watch?v=DsY5TEgRdgU </br>
+            <br> https://www.youtube.com/watch?v=RjzC-Glkc_g </br>
+            <br> https://www.youtube.com/watch?v=mCuORf-D7yg </br>
+            <br> https://www.youtube.com/watch?v=L6BjU3QzEAo </br>
           </p>
         </div>
       </div>

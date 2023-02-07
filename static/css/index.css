@@ -149,6 +149,19 @@ body {
   margin: 0 !important;
 }
 
+.services__text {
+  position: absolute;
+  text-align: right;
+  -moz-transform: rotate(-90deg) translate(-100%, -100%);
+  -webkit-transform: rotate(-90deg) translate(-100%, -100%);
+  -o-transform: rotate(-90deg) translate(-100%, -100%);
+  -ms-transform: rotate(-90deg) translate(-100%, -100%);
+  transform: rotate(-90deg) translate(-120%, -100%);
+  -ms-transform-origin: left top;
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+}
+
 #interpolation-image-wrapper {
   width: 100%;
 }
