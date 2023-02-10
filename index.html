@@ -178,12 +178,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            GAN inversion technologies enable creative image and video editing effects. Recently, 3D-aware GANs that have explicit camera control with 3D consistency open up new opportunities for creative contents editing. 
-            However, due to the training limitations of GANs, existing GAN inversion approaches still have difficulty in the out-of-distribution (OOD) data. 
-            In this paper, we propose a novel 3D-aware face video editing system with the presence of OOD objects.
-            Our main idea is to split a video into two neural radiance fields, in-distribution, and out-of-distribution, and compose them together for the reconstruction.
-            During editing, our approach allows us only to edit the in-distribution part to preserve the editability better.
-            We evaluate our method's reconstruction accuracy and editability on real videos and showcase favorable results against other baselines.
+            3D-aware GANs offer new capabilities for creative content editing, such as view synthesis, while preserving the editing capability of their 2D counterparts. 
+            Using GAN inversion, these methods can reconstruct an image or a video by optimizing/predicting a latent code and achieve semantic editing by manipulating the latent code. 
+            However, a model pre-trained on a face dataset (e.g., FFHQ) often has difficulty handling faces with out-of-distribution (OOD) objects, (e.g., heavy make-up or occlusions). 
+            We address this issue by explicitly modeling OOD objects in face videos. 
+            Our core idea is to represent the face in a video using two neural radiance fields, one for in-distribution and the other for out-of-distribution data, and compose them together for reconstruction. 
+            Such explicit decomposition alleviates the inherent trade-off between reconstruction fidelity and editability. 
+            We evaluate our method's reconstruction accuracy and editability on challenging real videos and showcase favorable results against other baselines.
           </p>
         </div>
       </div>
@@ -633,6 +634,7 @@
         </div>
       </div>
       
+      <br> </br>
       <h3 class="title is-4">View synthesis while video is playing</h3>
       <p>
         We can synthesize views while the video is playing. 
@@ -680,7 +682,7 @@
         </div>
       </div>
       
-
+      <br> </br>
       <!-- OOD object removal -->
       <h3 class="title is-4">OOD object removal</h3>
       <p>
