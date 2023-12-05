@@ -1,0 +1,181 @@
+.container-video{
+    width: 300px;
+    height: 300px;
+    overflow:hidden;
+    display:block;
+}
+#showoff-img{
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+
+}
+.video-grid .video {
+    width: 100%; /* Ensures video takes full width of its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.image-grid .image {
+    width: 100%; /* Ensures video takes full width of its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.bold-header {
+    font-weight: bold;
+}
+.container {
+	background-color: #FFFFFF;
+}
+.teaser-img {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.img-responsive {
+	margin: auto;
+}
+.comparison-table {
+	table-layout: fixed;
+		word-wrap: break-word;
+}
+.comparison-table th {
+	text-align: center;
+}
+.containner{display: flex;
+justify-content: center; /* align horizontal */
+align-items: center; /* for center of your page */
+height:100%; /* give it's height*/
+}
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.label-container p {
+    width: 48%; /* Adjust as needed to fit 50% width considering any padding/margin */
+    text-align: center;
+}
+
+.captions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates two columns of equal width */
+    width: 100%;
+}
+
+.caption {
+    text-align: center;
+    padding: 5px; /* Adjust padding as needed */
+}
+.slider-container {
+    text-align: center; /* Center aligns the content */
+    margin-bottom: 20px; /* Adds space below the slider */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Align the items vertically */
+}
+
+.slider-container #imageIndexDisplay {
+    margin-left: 10px; /* Space between the slider and the label */
+    font-weight: bold; /* Optional: makes the text bold */
+}
+.slider-description p {
+    text-align: center;
+    margin-bottom: 5px; /* Space above the slider */
+}
+
+#imageDisplay .columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imageDisplay img {
+    max-height: 400px; /* Adjust as needed */
+    width: auto; /* Maintains aspect ratio */
+    margin: 10px;
+}
+
+#imageGridContainer .columns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#imageGridContainer img {
+    max-height: 400px; /* Adjust as needed */
+    width: auto; /* Maintains aspect ratio */
+    margin: 10px;
+}
+#imageDisplayNVS img {
+    max-height: 400px; /* Adjust as needed */
+    width: auto; /* Maintains aspect ratio */
+    margin: 10px;
+}
+#imageDisplayNVS video {
+    max-height: 400px; /* Adjust as needed */
+    width: auto; /* Maintains aspect ratio */
+    margin: 10px;
+}
+#videoDisplay video{
+    max-height: 400px; /* Adjust as needed */
+    width: auto; /* Maintains aspect ratio */
+    margin: 10px;
+}
+#videoGridContainer .columns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#videoGridContainer video{
+    max-height: 400px; /* Adjust as needed */
+    width: auto; /* Maintains aspect ratio */
+    margin: 10px;
+}
+.description-text {
+    margin-bottom: -40px; /* Reduces the space below the paragraph */
+}
+
+/* If you're not using a specific class, you can target the p element directly inside the section, but be aware it affects all p elements inside sections */
+section p {
+    margin-bottom: 10px;
+}
+
+.method-buttons {
+    display: flex;
+    justify-content: center; /* Center everything horizontally */
+    align-items: center; /* Vertically center the label and buttons */
+    margin-bottom: 10px; /* Space below the button group */
+}
+
+.method-label {
+    margin-right: 10px; /* Space between the label and the first button */
+    font-weight: bold; /* Make the label text bold */
+}
+
+.attribute-buttons {
+    display: flex;
+    justify-content: center; /* Center everything horizontally */
+    align-items: center; /* Vertically center the label and buttons */
+    margin-bottom: 10px; /* Space below the button group */
+}
+
+.attribute-label {
+    margin-right: 10px; /* Space between the label and the first button */
+    font-weight: bold; /* Make the label text bold */
+}
+
+.menu-container {
+    text-align: center; /* Center the text inside the container */
+    width: 100%; /* Set the width */
+    margin: 0 auto; /* Center the container itself */
+  }
+  
+#contents {
+display: inline-block; /* Make the UL block align to the center */
+text-align: center; /* Align the list items to the left */
+}
+
+.current-attribute {
+    text-align: center;
+    margin-bottom: 15px; /* Adjust as needed */
+  }

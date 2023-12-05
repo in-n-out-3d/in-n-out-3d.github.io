@@ -8,22 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>In-N-Out</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -32,12 +16,14 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/select.css">
   <link rel="icon" href="">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/select.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
 <body>
@@ -48,7 +34,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
          <h1 class="col-md-12 text-center" style="font-size:30px;" id="title">
-            <b>In-N-Out</b>: Face Video Inversion and Editing with Volumetric Decomposition
+            <b>In-N-Out</b>: Faithful 3D GAN Inversion with Volumetric Decomposition for Face Editing
     
           </h1>        
           
@@ -60,10 +46,10 @@
             <span class="author-block">
                 <a href="https://research.adobe.com/person/cameron-smith/">Cameron Smith</a><sup><img src="./static/images/adobe.png" width="20"/></sup>,</span>
             <span class="author-block">
-              <a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a><sup>&#128034</sup>,
-            <span class="author-block">
                 <a href="https://sites.google.com/view/seoungwugoh/">Seoung Wug Oh</a><sup><img src="./static/images/adobe.png" width="20"/></sup></span>
             </span>
+            <span class="author-block">
+              <a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a><sup>&#128034</sup>,</span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -115,7 +101,20 @@
                   </a>
               </span>
               </div>
-
+              <br> </br>
+              <div class="menu-container"> 
+                <h3 class="title is-3">Menu for results</h3>
+                <ul id="contents">
+                  <li><a href="#rec_image_container">Reconstruction on Internet Images</a></li>
+                  <li><a href="#editing_image_container">Semantic editing on Internet Images</a></li>
+                  <li><a href="#nvs_image_container">View synthesis on Internet Images</a></li>
+                  <li><a href="#rec_video_container">Reconstruction on Internet Videos</a></li>
+                  <li><a href="#editing_video_container">Semantic editing on Internet Videos</a></li>
+                  <li><a href="#removal_container">OOD object removal on Internet videos</a></li>
+                  <li><a href="#ablation">Ablation study</a></li>
+                  <li><a href="#failure">Failure cases</a></li>
+                </ul>
+              </div>
           </div>
         </div>
       </div>
@@ -169,7 +168,6 @@
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -178,13 +176,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            3D-aware GANs offer new capabilities for creative content editing, such as view synthesis, while preserving the editing capability of their 2D counterparts. 
-            Using GAN inversion, these methods can reconstruct an image or a video by optimizing/predicting a latent code and achieve semantic editing by manipulating the latent code. 
-            However, a model pre-trained on a face dataset (e.g., FFHQ) often has difficulty handling faces with out-of-distribution (OOD) objects, (e.g., heavy make-up or occlusions). 
-            We address this issue by explicitly modeling OOD objects in face videos. 
-            Our core idea is to represent the face in a video using two neural radiance fields, one for in-distribution and the other for out-of-distribution data, and compose them together for reconstruction. 
-            Such explicit decomposition alleviates the inherent trade-off between reconstruction fidelity and editability. 
-            We evaluate our method's reconstruction accuracy and editability on challenging real videos and showcase favorable results against other baselines.
+            3D-aware GANs offer new capabilities for view synthesis while preserving the editing functionalities of their 2D counterparts.
+            GAN inversion is a crucial step that seeks the latent code to reconstruct input images or videos, subsequently enabling diverse editing tasks through manipulation of this latent code. 
+            However, a model pre-trained on a particular dataset (e.g., FFHQ) often has difficulty reconstructing images with out-of-distribution (OOD) objects such as faces with heavy make-up or occluding objects. 
+            We address this issue by explicitly modeling OOD objects from the input in 3D-aware GANs.
+            Our core idea is to represent the image using two individual neural radiance fields: one for the in-distribution content and the other for the out-of-distribution object. The final reconstruction is achieved by optimizing the composition of these two radiance fields with carefully designed regularization.
+            We demonstrate that our explicit decomposition alleviates the inherent trade-off between reconstruction fidelity and editability.
+            We evaluate reconstruction accuracy and editability of our method on challenging real face images and videos and showcase favorable results against other baselines.
           </p>
         </div>
       </div>
@@ -207,7 +205,7 @@
     <!-- Method. -->
     <div class="container has-text-centered is-max-desktop">
         <h2 class="title is-3">Method Overview</h2>
-        <img src="static/images/Overview.png" alt="method overview" style="width:100%;" >
+        <img src="static/images/Overview.jpg" alt="method overview" style="width:100%;" >
     </div>
     <!--/ Method. -->
     
@@ -216,481 +214,441 @@
 
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container ">
 
     <!-- Results. -->
-    <h2 class="title is-3">More results</h2>
+    <h2 class="title is-3">Single image</h2>
+
+    <section class="section">
+      <h3 id="rec_image_container" class="title is-4">Reconstruction on Internet Images</h3>
+      <p class="description-text">
+        Our method can be applied to diverse images from the Internet. 
+        We show reconstruction results from single images below.
+      </p>
+      <br></br>
+      <div class="container is-fluid">
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                  <!-- Description for Slider -->
+                  <div class="slider-description">
+                    <p>Slide to switch between different images</p>
+                  </div>
+
+                  <!-- Slider for Image Selection -->
+                  <div class="slider-container">
+                      <input type="range" min="0" max="9" value="0" id="imageSlider1" oninput="updateImages(this.value)">
+                      <span id="imageIndexDisplay1">0</span>/10 <!-- Display for the current image index -->
+                  </div>
+                  <!-- Description for buttons -->
+                  <div class="button-description">
+                    <p>Click to switch between different methods.</p>
+                  </div>
+                  <span class="link-block external-link button is-normal is-rounded is-dark"
+                        onclick="changeMethod('w')">
+                    <span>W</span>
+                  </span>
+                  <span class="link-block external-link button is-normal is-rounded is-dark"
+                        onclick="changeMethod('wplus')">
+                    <span>W+</span>
+                  </span>
+                  <span class="link-block external-link button is-normal is-rounded is-dark"
+                        onclick="changeMethod('ide3d')">
+                    <span>IDE-3D</span>
+                  </span>
+                  <span class="link-block external-link button is-normal is-rounded is-dark"
+                        onclick="changeMethod('pti')">
+                    <span>PTI</span>
+                  </span>
+                  <span class="link-block external-link button is-normal is-rounded is-dark"
+                        onclick="changeMethod('goae')">
+                    <span>GOAE</span>
+                  </span>
+                  <span class="link-block external-link button is-normal is-rounded is-dark"
+                        onclick="changeMethod('hfgi3d')">
+                    <span>HFGI3D</span>
+                  </span>
+              </div>
+            </div>
+            <!-- Image Display -->
+            <div id="imageDisplay" class="columns">
+              <div><h4>Input</h4><img id="inputImage" src="" alt="Input Image"></div>
+              <div><h4 id="methodTitle">W</h4><img id="methodImage" src="" alt="Method Image"></div>
+              <div><h4>Ours</h4><img id="oursImage" src="" alt="Ours Image"></div>
+            </div>
+          </div>
+        </div>
+      </div>      
+      <br> </br>
+      <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+    </section>
+      
+    <h3 id="editing_image_container" class="title is-4">Semantic editing on Internet Images</h3>
+    <p>
+      We can edit it with available semantic editing methods, e.g., InterfaceGAN, StyleCLIP.
+    </p>
+    <section class="section">
+      <div class="container is-fluid">
+          <div class="columns is-centered has-text-centered">
+              <div class="column">
+                  <div class="column has-text-centered">
+  
+                      <!-- Description for Slider -->
+                      <div class="slider-description">
+                        <p>Slide to switch between different images</p>
+                      </div>
+
+                      <!-- Slider for Image Selection -->
+                      <div class="slider-container">
+                        <input type="range" min="0" max="4" value="0" id="imageSlider2" oninput="updateDisplay(this.value)">
+                        <span id="imageIndexDisplay2">0</span>/5 <!-- Display for the current image index -->
+                      </div>
+                      
+                      <!-- Description for buttons -->
+                      <div class="button-description">
+                        <p>Click to switch between different methods or editing directions.</p>
+                      </div>
+                      <!-- Buttons for Method Selection -->
+                      <div class="method-buttons">
+                        <span class="method-label">Method:</span> 
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                              onclick="changeMethodwAttribute('w')">
+                          <span>W</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                              onclick="changeMethodwAttribute('wplus')">
+                          <span>W+</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                              onclick="changeMethodwAttribute('ide3d')">
+                          <span>IDE-3D</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                              onclick="changeMethodwAttribute('pti')">
+                          <span>PTI</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                              onclick="changeMethodwAttribute('goae')">
+                          <span>GOAE</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                              onclick="changeMethodwAttribute('hfgi3d')">
+                          <span>HFGI3D</span>
+                        </span>
+                        <!-- Add other method buttons here -->
+                      </div>
+  
+                      <!-- Buttons for Attribute Selection -->
+                      <div class="attribute-buttons">
+                        <span class="attribute-label">Editing:</span> 
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                            onclick="changeAttribute('eyeglasses')">
+                        <span>eyeglasses</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                            onclick="changeAttribute('elsa')">
+                          <span>Elsa</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                            onclick="changeAttribute('younger')">
+                          <span>younger</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                            onclick="changeAttribute('smile')">
+                          <span>smile</span>
+                        </span>
+                        <span class="link-block external-link button is-normal is-rounded is-dark"
+                            onclick="changeAttribute('surprised')">
+                          <span>surprised</span>
+                        </span>
+                        <!-- Add other attribute buttons here -->
+                      </div>
+  
+                  </div>
+                  <div class="current-attribute">
+                    <p><span id="currentAttributeDisplay1">eyeglasses</span></p>
+                  </div>
+                  <div id="imageGridContainer" class="columns">
+                      <!-- Images will be displayed here -->
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+    </section>
+  
+    <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+    <br> </br>
+
+      <h3 class="title is-4" id="nvs_image_container">View synthesis on Internet Images</h3>
+      <p>
+        Unlike HFGI3D, which warps and computes visibility map, resulting a time-consuming optimization,
+        our method only relies on a depth map from MiDaS, and can synthesize faithful views.
+      </p>
+      <br></br>
+      <section class="section">
+        <!-- Description for Slider -->
+        <div class="slider-description">
+          <p>Slide to switch between different images</p>
+        </div>
+        <!-- Slider for Image Selection -->
+        <div class="slider-container">
+          <input type="range" min="0" max="2" value="0" id="imageSlider3" oninput="updateDisplayNVSImage(this.value)">
+          <span id="imageIndexDisplay">0</span>/3
+        </div>
+        <!-- Method Buttons -->
+        <div class="method-buttons">
+          <span class="method-label">Method:</span> 
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSImage('w')">
+            <span>W</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSImage('wplus')">
+            <span>W+</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSImage('ide3d')">
+            <span>IDE-3D</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSImage('pti')">
+            <span>PTI</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSImage('goae')">
+            <span>GOAE</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSImage('hfgi3d')">
+            <span>HFGI3D</span>
+          </span>
+          <!-- Add other method buttons here -->
+        </div>
+    
+        <!-- Image Display -->
+        <div id="imageDisplayNVS" class="columns">
+            <!-- Images will be dynamically inserted here -->
+        </div>
+    
         
+      </section>
+      <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+      <br> </br>
+
       <!-- Internet Video -->
-      <h3 class="title is-4">Reconstruction on Internet Videos</h3>
+      <h2 class="title is-3">Videos</h2>
+      <h3 class="title is-4" id="rec_video_container">Reconstruction on Internet Videos</h3>
       <p>
         Our method can be applied to diverse videos from the Internet. 
         We show reconstruction results below.
       </p>
-      <p> </p>
-      <div class="columns is-centered">
-        <!-- Input -->
-        <div class="column">
-          <div class="content">
-            <h2 class="title is-5">Input</h2>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/rednose2_input.mp4"
-                      type="video/mp4">
-            </video>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/sunglasses2_input.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
+      <section class="section">
+        <div class="slider-description">
+          <p>Slide to switch between different videos</p>
         </div>
-        <!--/ Input -->
-
-        <!-- IDE-3D -->
-        <div class="column">
-          <h2 class="title is-5"><a href="https://mrtornado24.github.io/IDE-3D/">IDE-3D </a></h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_rec_ide3d.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses2_rec_ide3d.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
+        <!-- Slider for Video Selection -->
+        <div class="slider-container">
+          <input type="range" min="0" max="1" value="0" id="videoSlider1" oninput="updateDisplayInvVideo(this.value)">
+          <span id="videoIndexDisplay1">0</span>/2
         </div>
-        <!-- IDE-3D -->
-
-
-        <!-- W -->
-        <div class="column">
-          <h2 class="title is-5">W Space</h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_rec_w.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses2_rec_w.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
+        <!-- Method Buttons -->
+        <div class="method-buttons">
+          <span class="method-label">Method:</span> 
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodInvVideo('w')">
+            <span>W</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodInvVideo('wplus')">
+            <span>W+</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodInvVideo('ide3d')">
+            <span>IDE-3D</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodInvVideo('pti')">
+            <span>PTI</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodInvVideo('goae')">
+            <span>GOAE</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+              onclick="changeMethodInvVideo('hfgi3d')">
+          <span>HFGI3D</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+              onclick="changeMethodInvVideo('vive3d')">
+          <span>VIVE3D</span>
+          </span>
         </div>
-        <!-- W -->
-
-        <!-- W+ -->
-        <div class="column">
-          <h2 class="title is-5">W+ Space</h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_rec_wplus.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses2_rec_wplus.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
+    
+        <!-- Video Display -->
+        <div id="videoDisplay" class="columns">
+            <!-- Videos will be dynamically inserted here -->
         </div>
-        <!-- W+ -->
+    
+        
+    </section>
+      <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+      <br> </br>
 
-        <!-- PTI -->
-        <div class="column">
-          <h2 class="title is-5"><a href="https://github.com/danielroich/PTI/">PTI </a></h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_rec_pti.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses2_rec_pti.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <!-- PTI -->
-
-
-        <!-- Ours. -->
-        <div class="column">
-          <h2 class="title is-5">Ours</h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_rec_ours.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses2_rec_ours.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <h3 class="title is-4">Semantic editing on Internet Videos</h3>
+      <h3 class="title is-4" id="editing_video_container">Semantic editing on Internet Videos</h3>
       <p>
         We can edit it with available semantic editing methods, e.g., InterfaceGAN, StyleCLIP.
       </p>
-      <p> </p>
-      
-      <div class="columns is-centered">
-        <!-- Input -->
-        
-        <div class="column">
-          <div class="content">
-            <h2 class="title is-5">Input</h2>
-            <div class="services__text">"eyeglasses"</div>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/rednose2_input.mp4"
-                      type="video/mp4">
-            </video>
-            <div class="services__text">"younger"</div>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/sunglasses1_input.mp4"
-                      type="video/mp4">
-            </video>
-            <div class="services__text">"smile"</div>
-            <div class="services__text">"smile"</div>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween4_input.mp4"
-                      type="video/mp4">
-            </video>
-            <div class="services__text">"Elsa"</div>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween1_input.mp4"
-                      type="video/mp4">
-            </video>
-            <div class="services__text">"surprised"</div>
-            <video id="Input" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween5_input.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <!--/ Input -->
 
-        <!-- IDE-3D -->
-        <div class="column">
-          <h2 class="title is-5"><a href="https://mrtornado24.github.io/IDE-3D/">IDE-3D </a></h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_eyeglasses_ide3d.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses1_younger_ide3d.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween4_smile_ide3d.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween1_elsa_ide3d.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="IDE-3D" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween5_surprised_ide3d.mp4"
-                        type="video/mp4">
-              </video>
+      <section class="section">
+        <div class="container is-fluid">
+
+          <!-- Description for Slider -->
+          <div class="slider-description">
+            <p>Slide to switch between different videos.</p>
+          </div>
+
+          <!-- Slider for Image Selection -->
+          <div class="slider-container">
+            <input type="range" min="0" max="2" value="0" id="videoSlider2" oninput="updateDisplayEditVideo(this.value)">
+            <span id="videoIndexDisplay2">0</span>/3
+          </div>
+
+          <!-- Buttons for Method Selection -->
+          <div class="method-buttons">
+            <span class="method-label">Method:</span> 
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('w')">
+              <span>W</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('wplus')">
+              <span>W+</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('ide3d')">
+              <span>IDE-3D</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('pti')">
+              <span>PTI</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('goae')">
+              <span>GOAE</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('hfgi3d')">
+              <span>HFGI3D</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                  onclick="changeMethodEditVideo('vive3d')">
+              <span>VIVE3D</span>
+            </span>
+            <!-- Add other method buttons here -->
+          </div>
+
+          <!-- Buttons for Attribute Selection -->
+          <div class="attribute-buttons">
+            <span class="attribute-label">Editing:</span> 
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeAttributeEditVideo('eyeglasses')">
+            <span>eyeglasses</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeAttributeEditVideo('elsa')">
+              <span>Elsa</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeAttributeEditVideo('younger')">
+              <span>younger</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeAttributeEditVideo('smile')">
+              <span>smile</span>
+            </span>
+            <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeAttributeEditVideo('surprised')">
+              <span>surprised</span>
+            </span>
+            <!-- Add other attribute buttons here -->
+          </div>
+            <div class="current-attribute">
+              <p><span id="currentAttributeDisplay2">eyeglasses</span></p>
             </div>
-          </div>
+            <div id="videoGridContainer" class="columns"></div>
         </div>
-        <!-- IDE-3D -->
-
-
-        <!-- W -->
-        <div class="column">
-          <h2 class="title is-5">W Space</h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_eyeglasses_w.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses1_younger_w.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween4_smile_w.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween1_elsa_w.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween5_surprised_w.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <!-- W -->
-
-        <!-- W+ -->
-        <div class="column">
-          <h2 class="title is-5">W+ Space</h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_eyeglasses_wplus.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses1_younger_wplus.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween4_smile_wplus.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween1_elsa_wplus.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="W+" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween5_surprised_wplus.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <!-- W+ -->
-
-        <!-- PTI -->
-        <div class="column">
-          <h2 class="title is-5"><a href="https://github.com/danielroich/PTI/">PTI </a></h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_eyeglasses_pti.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses1_younger_pti.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween4_smile_pti.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween1_elsa_pti.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="PTI" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween5_surprised_pti.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-        <!-- PTI -->
-
-
-        <!-- Ours. -->
-        <div class="column">
-          <h2 class="title is-5">Ours</h2>
-          <div class="columns is-centered">
-            <div class="column content">
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/rednose2_eyeglasses_ours.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/sunglasses1_younger_ours.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween4_smile_ours.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween1_elsa_ours.mp4"
-                        type="video/mp4">
-              </video>
-              <video id="ours" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-                <source src="./static/results/Halloween5_surprised_ours.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-
-      </div>
-        <!--/ Ours. -->
-      <!-- Internet Video -->
+      </section>
+      <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+      <br> </br>
 
       <!-- Novel view synthesis -->
-      <h3 class="title is-4">Novel view synthesis</h3>
+      <h3 class="title is-4">View synthesis on Internet videos</h3>
       <p>
         After reconstruction, we can acquire novel views.
       </p>
-      <p> </p>
-      <!-- Novel view synthesis -->
-      <div class="columns is-centered">
-        <!-- Input -->
-        <div class="column">
-          <div class="content">
-            <h2 class="title is-5">Input</h2>
-          </div>
+      <section class="section">
+        <!-- Description for Slider -->
+        <div class="slider-description">
+          <p>Slide to switch between different videos</p>
         </div>
-        <!--/ Input -->
-
-        <!-- IDE-3D -->
-        <div class="column">
-          <h2 class="title is-5"><a href="https://mrtornado24.github.io/IDE-3D/">IDE-3D </a></h2>
-          <div class="columns is-centered">
-          </div>
+        <!-- Slider for Video Selection -->
+        <div class="slider-container">
+          <input type="range" min="0" max="2" value="0" id="videoSlider3" oninput="updateDisplayNVSVideo(this.value)">
+          <span id="videoIndexDisplay3">0</span>/3
         </div>
-        <!-- IDE-3D -->
-
-
-        <!-- W -->
-        <div class="column">
-          <h2 class="title is-5">W Space</h2>
-          <div class="columns is-centered">
-          </div>
+        <!-- Method Buttons -->
+        <div class="method-buttons">
+          <span class="method-label">Method:</span> 
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('w')">
+            <span>W</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('wplus')">
+            <span>W+</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('ide3d')">
+            <span>IDE-3D</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('pti')">
+            <span>PTI</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('goae')">
+            <span>GOAE</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('hfgi3d')">
+            <span>HFGI3D</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+                onclick="changeMethodNVSVideo('vive3d')">
+            <span>VIVE3D</span>
+          </span>
+          <!-- Add other method buttons here -->
         </div>
-        <!-- W -->
-
-        <!-- W+ -->
-        <div class="column">
-          <h2 class="title is-5">W+ Space</h2>
-          <div class="columns is-centered">
-          </div>
+    
+        <!-- Video Display -->
+        <div id="videoDisplayNVS" class="columns">
+            <!-- Videos will be dynamically inserted here -->
         </div>
-        <!-- W+ -->
-
-        <!-- PTI -->
-        <div class="column">
-          <h2 class="title is-5"><a href="https://github.com/danielroich/PTI/">PTI </a></h2>
-          <div class="columns is-centered">
-          </div>
-        </div>
-        <!-- PTI -->
-
-
-        <!-- Ours. -->
-        <div class="column">
-          <h2 class="title is-5">Ours</h2>
-          <div class="columns is-centered">
-          </div>
-        </div>
-
-      </div>
-
-      <div class="raw">
-        <div class="content">
-           <video id="Input" autoplay controls muted loop playsinline webkit-playsinline width="150" height="100">
-            <source src="./static/results/earrings2_input.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="Input" autoplay controls muted loop playsinline webkit-playsinline width="750" height="100">
-            <source src="./static/results/earrings2_interp_all.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="raw">
-        <div class="content">
-           <video id="Input" autoplay controls muted loop playsinline webkit-playsinline width="150" height="100">
-            <source src="./static/results/ladygaga_input.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="Input" autoplay controls muted loop playsinline webkit-playsinline width="750" height="100">
-            <source src="./static/results/ladygaga_interp_all.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="raw">
-        <div class="content">
-          <div class="services__text">"Elsa"</div>
-           <video id="Input" autoplay controls muted loop playsinline webkit-playsinline width="150" height="100">
-            <source src="./static/results/rednose2_input.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="Input" autoplay controls muted loop playsinline webkit-playsinline width="750" height="100">
-            <source src="./static/results/rednose2_interp_all.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
       
+      <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
       <br> </br>
-      <!-- <h3 class="title is-4">View synthesis while video is playing</h3>
-      <p>
-        We can synthesize views while the video is playing. 
-      </p>
-      <p> </p>
 
-      <div class="container">
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-halloween2">
-            <video poster="" id="halloween2" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween2_rgb_interpolation_spatiotemporal.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-halloween3">
-            <video poster="" id="halloween3" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween3_rgb_interpolation_spatiotemporal.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-halloween4">
-            <video poster="" id="halloween4" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween4_rgb_interpolation_spatiotemporal.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-halloween6">
-            <video poster="" id="halloween6" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="./static/results/Halloween6_rgb_interpolation_spatiotemporal.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-ladygaga">
-            <video poster="" id="ladygaga" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="static/results/ladygaga_rgb_interpolation_spatiotemporal.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-sunglasses2">
-            <video poster="" id="sunglasses2" autoplay controls muted loop playsinline webkit-playsinline height="100%">
-              <source src="static/results/sunglasses2_rgb_interpolation_spatiotemporal.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div> -->
       
       <br> </br>
       <!-- OOD object removal -->
-      <h3 class="title is-4">OOD object removal</h3>
+      <h3 class="title is-4" id="removal_container">OOD object removal on Internet videos</h3>
       <p>
         By setting the weight of OOD pixels to 0, we can remove the OOD object.
       </p>
-      <p> </p>
+      <br></br>
       <!-- OOD object removal -->
-
       <div class="container">
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-halloween2">
@@ -731,46 +689,100 @@
           </div>
         </div>
       </div>
-
       
+      <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+      <br> </br>
+
+    <h2 class="title is-3" id="ablation">Ablation study</h2>  
+
     
-   
-
-    <!-- Concurrent Work. -->
-    <!-- <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            Our method is built upon prior work. We share some useful links below.
-          </p>
-          <h3 class="title is-5">GAN inversion</h3>
-            <a href="https://github.com/danielroich/PTI">PTI</a>: A hybrid GAN inversion method by tuning the generator.<br>
-            <a href="https://github.com/omertov/encoder4editing">e4e</a>: An encoder-based GAN inversion approach.<br>
-            <a href="https://github.com/eladrich/pixel2style2pixel">pSp</a>: An encoder-based GAN inversion approach.
-          <h3 class="title is-5">GAN-based editing</h3>
-            <a href="https://arxiv.org/abs/2104.09125">StyleCLIP</a>: A language-based image editing approach via pre-trained StyleGAN.<br>
-            <a href="https://arxiv.org/abs/2104.09125">StyleGAN-NADA</a>: A language-based out-of-domain editing technique.<br>
-            <a href="https://github.com/InterDigitalInc/latent-transformer"> Latent Transformer</a>: An in-domain editing approach by disentangling the editing content from other attributes.<br>
-            <a href="https://stitch-time.github.io/"> Stitch in Time</a>: provides a way to "unalign" edited frames back to the original video.
-          <h3 class="title is-5">Blind Video Temporal Consistency</h3>
-            <a href="https://chenyanglei.github.io/DVP/index.html/"> DVP</a>: a blind video temporal consistency method.<br>
-            <a href="http://vllab.ucmerced.edu/wlai24/video_consistency/"> Learning Blind Video Temporal Consistency</a>: a blind video temporal consistency method.
-        </div>
+    <div class="column has-text-centered">
+      <div class="publication-links">
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+               onclick="change_ablation('Lb')">
+            <span>Blending weight regularization</span>
+          </span>
+          <span class="link-block external-link button is-normal is-rounded is-dark"
+               onclick="change_ablation('Lw')">
+            <span>Latent regularization</span>
+          </span>
       </div>
-    </div> -->
-    <!--/ Concurrent Work. -->
+    </div>
+    <div class="is-centered" style="width: 100%; margin-left: 0%;">
+      <div class="columns">
+        <!-- First Video and Caption -->
+        <div class="column has-text-centered">
+            <video id="video_ablation1" autoplay controls muted loop playsinline width="100%">
+              <source id="source_ablation1" src="./static/results/Lb_1.mp4" type="video/mp4">
+            </video>
+            <div class="captions-grid">
+              <p class="caption" id='label-abla1-1'>w/o blending weight regularization</p>
+              <p class="caption" id='label-abla1-2'>w/ blending weight regularization (Eqn.6)</p>
+            </div>
+            
+        </div>
+
+        <!-- Second Video and Caption -->
+        <div class="column has-text-centered">
+            <video id="video_ablation2" autoplay controls muted loop playsinline width="100%">
+              <source id="source_ablation2" src="./static/results/Lb_2.mp4" type="video/mp4">
+            </video>
+            <div class="captions-grid">
+              <p class="caption" id='label-abla2-1'>w/o blending weight regularization</p>
+              <p class="caption" id='label-abla2-2'>w/ blending weight regularization (Eqn.6)</p>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+
+
+    
+    
+
+    
+    <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+    <br> </br>
+
+    <h2 class="title is-3" id="failure">Failure cases</h2>  
+    <div class="is-centered" style="width: 100%; margin-left: 0%;">
+      <div class="columns">
+        <!-- First Video and Caption -->
+        <div class="column has-text-centered">
+            <video id="video_ablation1" autoplay controls muted loop playsinline width="50%">
+              <source id="source_ablation1" src="./static/results/failure1.mp4" type="video/mp4">
+            </video>
+              <p class="caption" id='label-failure1'>OOD dominates: When editing on the OOD region, 
+                e.g., adding eyeglasses to the heavy makeup region, because the blending weights are closer to 1, 
+                the eyeglasses in the in-distribution radiance field are hard to be added. 
+
+              </p>
+        </div>
+
+        <!-- Second Video and Caption -->
+        <div class="column has-text-centered">
+            <video id="video_ablation2" autoplay controls muted loop playsinline width="50%">
+              <source id="source_ablation2" src="./static/results/failure2.mp4" type="video/mp4">
+            </video>
+              <p class="caption" id='label-failure2'>Double glasses: Since our OOD radiance field has no knowledge about the GAN and faces prior, 
+                when the OOD object itself is glasses, adding eyeglasses introduces duplicate objects. 
+
+              </p>
+        </div>
+        
+      </div>
+    </div>
+    <ul><li><a href="#contents" style="font-size: 20px;">&uarr;Back to top menu</a></li></ul>
+    <br> </br>
 
   </div>
 </section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{xu2023video3deditgan,
-  author    = {Xu, Yiran and Shu, Zhixin and Smith, Cameron and Huang, Jia-Bin and Oh, Seoung Wug},
+  author    = {Xu, Yiran and Shu, Zhixin and Smith, Cameron and Oh, Seoung Wug and Huang, Jia-Bin},
   title     = {In-N-Out: Face Video Inversion and Editing with Volumetric Decomposition},
   journal   = {arXiv preprint arXiv: 2302.04871},
   year      = {2023},
@@ -789,25 +801,230 @@
             We would like to thank <a href="https://nerfies.github.io/">Nerfies</a> for providing the website <a href="https://github.com/nerfies/nerfies.github.io">source code</a>.
           </p>
           <p>
-            The Internet videos used in the project are from YouTube. 
-            <br>Sources: </br>
-            <br> https://www.youtube.com/watch?v=aQ-rxudugzA </br>
-            <br> https://www.youtube.com/watch?v=ehMkwl8qyIU </br>
-            <br> https://www.youtube.com/watch?v=xWQXqhLjD5s </br>
-            <br> https://www.youtube.com/watch?v=JtYjnD3yleo </br>
-            <br> https://www.youtube.com/watch?v=bdbFoyPol24 </br>
-            <br> https://www.youtube.com/watch?v=9jC2x1FJ4uU </br>
-            <br> https://www.youtube.com/watch?v=DsY5TEgRdgU </br>
-            <br> https://www.youtube.com/watch?v=RjzC-Glkc_g </br>
-            <br> https://www.youtube.com/watch?v=mCuORf-D7yg </br>
-            <br> https://www.youtube.com/watch?v=L6BjU3QzEAo </br>
-            <br> https://www.youtube.com/watch?v=ntC4Ynb5fWI </br>
+            The data we are using are from the Internet. We thank for the creators of the videos and images. Please do not use the data for commercial purposes.
+          </p>
+          <p>
+            You can find <a href="./static/images/image_source.txt">video sources</a> and
+            <a href="./static/images/image_source.txt">image sources</a> here.
           </p>
         </div>
       </div>
     </div>
   </div>
 </footer>
+
+<script>
+  // Call the function when the window has finished loading
+  window.onload = function() {
+      displayVideos('eyeglasses'); // Replace 'defaultAttribute' with your default attribute
+  };
+</script>
+
+<script>
+  var currentMethod = 'w'; // Default method
+  var currentAttribute = 'eyeglasses';
+
+  function updateImages(imageIndex) {
+      document.getElementById('inputImage').src = `./static/results/image${imageIndex}_target_00000.png`;
+      document.getElementById('methodImage').src = `./static/results/image${imageIndex}_inv_${currentMethod}_00000.png`;
+      document.getElementById('oursImage').src = `./static/results/image${imageIndex}_inv_ours_00000.png`;
+      var displayMethod = currentMethod === 'wplus' ? 'W+' : currentMethod.toUpperCase();
+        document.getElementById('methodTitle').innerText = displayMethod;
+      
+      // Update the image index display
+      document.getElementById('imageIndexDisplay1').innerText = imageIndex;
+  }
+
+  function changeMethod(method) {
+      currentMethod = method;
+      updateImages(document.getElementById('imageSlider1').value);
+  }
+
+  // Initialize with the first image
+  updateImages(0);
+
+  function updateDisplay(imageIndex) {
+    // If imageIndex is not provided, use the value from the slider
+    if (imageIndex === undefined) {
+        imageIndex = document.getElementById('imageSlider2').value;
+    }
+    
+    // Update the display with the current index
+    document.getElementById('imageIndexDisplay2').innerText = imageIndex;
+
+    // Call the function to update images based on this index
+    displayImages(currentAttribute, currentMethod, imageIndex);
+    
+  }
+
+  function changeMethodwAttribute(method) {
+    currentMethod = method;
+    updateDisplay(); // No need to pass the value; updateDisplay will fetch it
+  }
+
+  function changeAttribute(attribute) {
+      currentAttribute = attribute;
+      updateDisplay(); // No need to pass the value; updateDisplay will fetch it
+      // Update the current attribute display
+      document.getElementById('currentAttributeDisplay1').innerText = attribute.charAt(0).toUpperCase() + attribute.slice(1); // Capitalize the first letter
+  }
+
+  // Initialize with the first image, default method, and attribute
+  updateDisplay();
+
+  function changeMethodNVSImage(currentMethod) {
+    imageIndex = document.getElementById('imageSlider3').value;
+        updateDisplayNVSImage(imageIndex, currentMethod);
+    }
+
+  function updateDisplayNVSImage(imageIndex, currentMethod) {
+      if (currentMethod === undefined) {
+            currentMethod = 'w';
+      }
+      if (imageIndex === undefined) {
+        imageIndex = document.getElementById('imageSlider3').value;
+      }
+      var inputImagePath = `./static/results/image${imageIndex}_nvs_input.png`;
+      var methodImagePath = `./static/results/image${imageIndex}_nvs_${currentMethod}.mp4`; // Change to .png if images
+      var oursImagePath = `./static/results/image${imageIndex}_nvs_ours.mp4`; // Change to .png if images
+      
+      var imageDisplayNVS = document.getElementById('imageDisplayNVS');
+      var displayMethod = currentMethod === 'wplus' ? 'W+' : currentMethod.toUpperCase();
+        document.getElementById('methodTitle').innerText = displayMethod;
+      imageDisplayNVS.innerHTML = `
+          <div><h4>Input</h4><img src="${inputImagePath}" alt="Input Image"></div>
+          <div><h4>${displayMethod.toUpperCase()}</h4>
+              <video autoplay controls muted loop playsinline height="100%">
+                  <source src="${methodImagePath}" type="video/mp4">
+              </video>
+          </div>
+          <div><h4>Ours</h4>
+              <video autoplay controls muted loop playsinline height="100%">
+                  <source src="${oursImagePath}" type="video/mp4">
+              </video>
+          </div>
+      `;
+      
+      document.getElementById('imageIndexDisplay').innerText = imageIndex;
+  }
+
+  // Initialize with the first image and default method
+  updateDisplayNVSImage();
+
+
+  function changeMethodInvVideo(method) {
+        currentMethod = method;
+        updateDisplayInvVideo(document.getElementById('videoSlider1').value);
+    }
+
+  function updateDisplayInvVideo(videoIndex) {
+      var inputVideoPath = `./static/results/video${videoIndex}_inv_input.mp4`;
+      var methodVideoPath = `./static/results/video${videoIndex}_inv_${currentMethod}.mp4`;
+      var oursVideoPath = `./static/results/video${videoIndex}_inv_ours.mp4`;
+
+      var videoDisplay = document.getElementById('videoDisplay');
+      var displayMethod = currentMethod === 'wplus' ? 'W+' : currentMethod.toUpperCase();
+        document.getElementById('methodTitle').innerText = displayMethod;
+      videoDisplay.innerHTML = `
+          <div><h4>Input</h4><video autoplay controls muted loop><source src="${inputVideoPath}" type="video/mp4"></video></div>
+          <div><h4>${displayMethod.toUpperCase()}</h4><video autoplay controls muted loop><source src="${methodVideoPath}" type="video/mp4"></video></div>
+          <div><h4>Ours</h4><video autoplay controls muted loop><source src="${oursVideoPath}" type="video/mp4"></video></div>
+      `;
+
+      document.getElementById('videoIndexDisplay1').innerText = videoIndex;
+  }
+
+  // Initialize with the first video and default method
+  updateDisplayInvVideo(0);
+
+  function changeAttributeEditVideo(attribute) {
+        currentAttribute = attribute;
+        updateDisplayEditVideo(document.getElementById('videoSlider2').value);
+        // Update the current attribute display
+        document.getElementById('currentAttributeDisplay2').innerText = attribute.charAt(0).toUpperCase() + attribute.slice(1); // Capitalize the first letter
+    }
+
+    function changeMethodEditVideo(method) {
+        currentMethod = method;
+        updateDisplayEditVideo(document.getElementById('videoSlider2').value);
+    }
+
+    function updateDisplayEditVideo(videoIndex) {
+        // if (currentMethod === undefined) {
+        //       currentMethod = 'w';
+        // }
+        // if (currentAttribute === undefined) {
+        //   currentAttribute = 'eyeglasses';
+        // }
+        if (videoIndex === undefined) {
+          videoIndex = document.getElementById('videoSlider2').value;
+        }
+        var gridContainer = document.getElementById('videoGridContainer');
+        gridContainer.innerHTML = ''; // Clear existing content
+
+        var inputVideoPath = `./static/results/video${videoIndex}_${currentAttribute}_input.mp4`;
+        var methodVideoPath = `./static/results/video${videoIndex}_${currentAttribute}_${currentMethod}.mp4`;
+        var oursVideoPath = `./static/results/video${videoIndex}_${currentAttribute}_ours.mp4`;
+
+        var videoDisplay = document.getElementById('videoDisplay');
+        var displayMethod = currentMethod === 'wplus' ? 'W+' : currentMethod.toUpperCase();
+            document.getElementById('methodTitle').innerText = displayMethod;
+        gridContainer.innerHTML = `
+            <div class="column"><h4>Input</h4><video autoplay controls muted loop><source src="${inputVideoPath}" type="video/mp4"></video></div>
+            <div class="column"><h4>${displayMethod.toUpperCase()}</h4><video autoplay controls muted loop><source src="${methodVideoPath}" type="video/mp4"></video></div>
+            <div class="column"><h4>Ours</h4><video autoplay controls muted loop><source src="${oursVideoPath}" type="video/mp4"></video></div>
+        `;
+
+        document.getElementById('videoIndexDisplay2').innerText = videoIndex;
+    }
+
+    // Initialize with the first video, default method, and attribute
+    updateDisplayEditVideo(0);
+
+  function changeMethodNVSVideo(currentMethod) {
+    videoIndex = document.getElementById('videoSlider3').value;
+        updateDisplayNVSVideo(videoIndex, currentMethod);
+    }
+
+  function updateDisplayNVSVideo(videoIndex, currentMethod) {
+      if (currentMethod === undefined) {
+            currentMethod = 'w';
+      }
+      if (videoIndex === undefined) {
+        videoIndex = document.getElementById('videoSlider3').value;
+      }
+      var inputVideoPath = `./static/results/video${videoIndex}_nvs_input.mp4`;
+      var methodVideoPath = `./static/results/video${videoIndex}_nvs_${currentMethod}.mp4`; // Change to .png if images
+      var oursVideoPath = `./static/results/video${videoIndex}_nvs_ours.mp4`; // Change to .png if images
+      
+      var videoDisplayNVS = document.getElementById('videoDisplayNVS');
+      var displayMethod = currentMethod === 'wplus' ? 'W+' : currentMethod.toUpperCase();
+        document.getElementById('methodTitle').innerText = displayMethod;
+      videoDisplayNVS.innerHTML = `
+          <div><h4>Input</h4>
+              <video autoplay controls muted loop playsinline height="100%">
+                  <source src="${inputVideoPath}" type="video/mp4">
+              </video>
+          </div>
+          <div><h4>${displayMethod.toUpperCase()}</h4>
+              <video autoplay controls muted loop playsinline height="100%">
+                  <source src="${methodVideoPath}" type="video/mp4">
+              </video>
+          </div>
+          <div><h4>Ours</h4>
+              <video autoplay controls muted loop playsinline height="100%">
+                  <source src="${oursVideoPath}" type="video/mp4">
+              </video>
+          </div>
+      `;
+      
+      document.getElementById('videoIndexDisplay3').innerText = videoIndex;
+  }
+
+  // Initialize with the first image and default method
+  updateDisplayNVSVideo();
+
+</script>
 
 </body>
 </html>
